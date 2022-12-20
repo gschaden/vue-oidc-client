@@ -4161,6 +4161,7 @@ function createOidcAuth(_authName, defaultSignInType, _appUrl, oidcConfig, logge
   var auth = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
     data: function data() {
       return {
+        mgr: mgr,
         user: null,
         myRouter: null
       };
@@ -4317,7 +4318,7 @@ function createOidcAuth(_authName, defaultSignInType, _appUrl, oidcConfig, logge
     if (auth.myRouter) {
       var current = auth.myRouter.currentRoute;
 
-      if (current && current.meta.authName === _authName) {
+      if (current && current.meta && current.meta.authName === _authName) {
         external_oidc_client_["Log"].debug("".concat(_authName, " auth page re-signin with ").concat(defaultSignInType));
         signInReal(defaultSignInType, {
           state: {
@@ -4347,7 +4348,7 @@ function createOidcAuth(_authName, defaultSignInType, _appUrl, oidcConfig, logge
     if (router) {
       var current = router.currentRoute;
 
-      if (current && current.meta.authName === _authName) {
+      if (current && current.meta && current.meta.authName === _authName) {
         router.replace('/');
         return;
       }
